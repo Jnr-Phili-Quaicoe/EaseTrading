@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="EasyLearning.edu interactive ICT learning platform">
+  <title>EasyLearning.edu</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <button id="menuBtn" class="icon-btn">☰</button>
+    <a class="logo" href="/"><span>E</span>EasyLearning<b>.edu</b></a>
+    <nav><a href="#courses">Courses</a><a href="#playground">Playground</a><button id="certNav">Certificate</button></nav>
+    <div class="top-progress"><small>Course progress <b id="topPercent">0%</b></small><div class="bar"><i id="topBar"></i></div></div>
+  </header>
+
+  <div class="layout">
+    <div id="overlay" class="overlay"></div>
+    <aside id="sidebar">
+      <div class="side-head"><strong>Learning tracks</strong><button id="closeBtn">×</button></div>
+      <div id="courses" class="courses">
+        <button data-course="python"><span>🐍</span><div><b>Python Fundamentals</b><small>Variables, logic and functions</small></div></button>
+        <button data-course="web"><span>🌐</span><div><b>Modern HTML5 & Web</b><small>Structure, forms and semantics</small></div></button>
+        <button class="active" data-course="security"><span>🔒</span><div><b>Data Security & Hashing</b><small>Hashing, salting and SHA-256</small></div></button>
+      </div>
+      <div class="tip"><b>Learning tip</b><p>Complete each lesson, then pass the practical task to earn your certificate.</p></div>
+    </aside>
+
+    <main>
+      <section class="hero">
+        <div><em>INTERACTIVE COURSE</em><h1 id="courseTitle"></h1><p id="courseDesc"></p></div>
+        <div class="progress-card"><span>Your progress</span><strong id="mainPercent">0%</strong><div class="bar"><i id="mainBar"></i></div></div>
+      </section>
+
+      <div id="stepTabs" class="steps">
+        <button class="active" data-step="0">Step 1</button><button data-step="1">Step 2</button><button data-step="2">Step 3</button><button data-step="3">Capstone</button>
+      </div>
+
+      <section class="content-grid">
+        <article class="panel lesson">
+          <div id="lessonContent"></div>
+          <footer><button id="prevBtn" class="secondary">← Previous</button><button id="nextBtn" class="primary">Complete & Continue →</button></footer>
+        </article>
+
+        <aside id="playground" class="panel playground">
+          <div class="play-head"><div><em>LIVE PLAYGROUND</em><h2>Practice task</h2></div><span id="status">Not submitted</span></div>
+          <p id="taskPrompt"></p><label for="answer">Your answer</label>
+          <textarea id="answer" spellcheck="false"></textarea>
+          <div id="feedback"></div>
+          <button id="runBtn" class="run">▶ Run & Check Answer</button>
+          <button id="hintBtn" class="secondary full">Show Hint</button>
+          <div id="hint">Use the course example and enter only the missing function, keyword, or tag.</div>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <div id="nameModal" class="modal"><div class="dialog small"><div class="medal">🎓</div><h2>Congratulations!</h2><p>You passed. Enter your full name to generate your certificate.</p><form id="nameForm"><label for="studentName">Full name</label><input id="studentName" required minlength="2" placeholder="Enter your full name"><button class="primary full">Generate Certificate</button></form></div></div>
+
+  <div id="certModal" class="modal certificate-modal">
+    <div class="dialog cert-dialog"><div class="cert-actions"><strong>Your Certificate</strong><div><button id="printBtn" class="run">Print / Save PDF</button><button id="certClose" class="secondary">Close</button></div></div>
+      <section id="certificate" class="certificate"><div class="seal">E</div><em>EASYLEARNING.EDU</em><h1>CERTIFICATE</h1><h3>OF ACHIEVEMENT</h3><p>This is to certify that</p><h2 id="certName">Student Name</h2><p>has successfully completed the specialized practical course</p><h4 id="certCourse"></h4><div id="skills" class="skills"></div><footer><span><b id="certDate"></b><small>Date issued</small></span><span><b>EasyLearning</b><small>Course Director</small></span><span><b id="certId"></b><small>Credential ID</small></span></footer></section>
+    </div>
+  </div>
+  <div id="toast"></div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
